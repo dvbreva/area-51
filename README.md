@@ -1,2 +1,2 @@
 # area-51
-TPL course project
+Task Parallel Library course project.
