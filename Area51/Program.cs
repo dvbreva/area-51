@@ -10,14 +10,14 @@ namespace Area51
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hey");
+            Console.WriteLine("Starting the trip..");
 
             var elevator = new Elevator(1);
 
-            var agents = new List<Agent>
+            var agents = new List<BaseAgent>
             {
-                new Agent("Didi",SecurityLevel.TopSecret,elevator),
-                new Agent("Another Didi",SecurityLevel.Secret,elevator)
+                new BaseAgent("Didi",SecurityLevel.TopSecret,elevator),
+                new BaseAgent("Another Didi",SecurityLevel.Secret,elevator)
             };
 
             var threads = agents
@@ -33,7 +33,6 @@ namespace Area51
             {
                 thread.Join();
             }
-
 
             Console.WriteLine("\nArea51 Trip is over!");
             Console.ReadLine();
