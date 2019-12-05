@@ -73,6 +73,7 @@ namespace Area51
         public void GoHome()
         {
             _inElevator = false;
+
             Console.WriteLine($"x Agent {Name} then decided to go home.\n");
         }
 
@@ -99,6 +100,7 @@ namespace Area51
             Console.WriteLine($"Agent {Name} has moved to {newFloor} floor.");
 
             _decidesToLeaveFloor = true;
+
             if (_decidesToLeaveFloor)
             {
                 GoHome();

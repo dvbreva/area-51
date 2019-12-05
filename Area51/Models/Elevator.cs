@@ -53,6 +53,7 @@ namespace Area51
         public void GoToFloor(FloorType currentFloor, FloorType desiredFloor)
         {
             Thread.Sleep(1000);
+
             CurrentFloor = desiredFloor;
 
             if (CanEnterFloor(Agent, desiredFloor))
@@ -72,6 +73,7 @@ namespace Area51
         public void EnterElevator(BaseAgent agent, FloorType currentFloor, FloorType desiredFloor)
         {
             _semaphore.WaitOne();
+
             Agent = agent;
 
             Console.WriteLine($"{agent.Name} entered the elevator.");
@@ -115,7 +117,7 @@ namespace Area51
                     return true;
 
                 default:
-                    Console.WriteLine("Something went wrong.");
+                    Console.WriteLine("Something maybe went wrong.");
                     return false;
             }
         }
