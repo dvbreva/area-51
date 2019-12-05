@@ -6,17 +6,27 @@ namespace Area51
 {
     public class BaseAgent : IAgent
     {
+        #region Private Fields
+
         private bool _inElevator = true;
         private bool _decidesToLeaveFloor = false;
         private bool _decidesToLeave = false;
         private FloorType _currentFloor = FloorType.GroundFloor;
         private static Random _random = new Random();
 
+        #endregion
+
+        #region Public Properties
+
         public string Name { get; private set; }
 
         public SecurityLevel SecurityLevel { get; private set; }
 
         public Elevator Elevator { get; private set; }
+
+        #endregion
+
+        #region Public Constructors
 
         public BaseAgent(string name,
             SecurityLevel securityLevel,
@@ -26,6 +36,10 @@ namespace Area51
             SecurityLevel = securityLevel;
             Elevator = elevator;
         }
+
+        #endregion
+
+        #region Public Methods
 
         public void DoWork()
         {
@@ -91,6 +105,10 @@ namespace Area51
             }
         }
 
+        #endregion
+
+        #region Private Methods
+
         private void EnterElevator()
         {
             var randomFloor = GetRandomFloor();
@@ -101,5 +119,6 @@ namespace Area51
         private FloorType GetRandomFloor()
             => (FloorType)_random.Next(0, 4);
 
+        #endregion
     }
 }

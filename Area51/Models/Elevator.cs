@@ -7,18 +7,32 @@ namespace Area51
 {
     public class Elevator : IElevator
     {
+        #region Private Fields
+
         private Semaphore _semaphore;
         private static Random _random = new Random();
+
+        #endregion
+
+        #region Public Properties
 
         public BaseAgent Agent { get; set; }
 
         public FloorType CurrentFloor { get; set; }
+
+        #endregion
+
+        #region Public Constructors
 
         public Elevator(int capacity)
         {
             _semaphore = new Semaphore(capacity, capacity);
             CurrentFloor = FloorType.GroundFloor;
         }
+
+        #endregion
+
+        #region Public Methods
 
         public void ChooseFloor(FloorType currentFloor)
         {
@@ -41,7 +55,7 @@ namespace Area51
             Thread.Sleep(1000);
             CurrentFloor = desiredFloor;
 
-            if (CanEnter(Agent, desiredFloor))
+            if (CanEnterFloor(Agent, desiredFloor))
             {
                 Console.WriteLine($"\n{Agent.Name} was granted access to this floor.");
 
@@ -74,10 +88,14 @@ namespace Area51
             agent.DoSomethingOnTheFloor(CurrentFloor);
         }
 
+        #endregion
+
+        #region Private Methods
+        
         private FloorType GetRandomFloor()
             => (FloorType)_random.Next(0, 4);
 
-        private bool CanEnter(BaseAgent agent, FloorType floor)
+        private bool CanEnterFloor(BaseAgent agent, FloorType floor)
         {
             switch (agent.SecurityLevel)
             {
@@ -101,5 +119,7 @@ namespace Area51
                     return false;
             }
         }
+
+        #endregion
     }
 }
